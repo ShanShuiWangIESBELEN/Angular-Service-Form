@@ -1,0 +1,25 @@
+<div class="form-container">
+    <h3>Registrar Mensaje</h3>
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <!-- Mensaje -->
+        <div>
+            <label for="message">Mensaje:</label>
+            <input type="text" formControlName="message" placeholder="Escribe un mensaje">
+            <div *ngIf="form.controls['message'].invalid && form.controls['message'].touched">
+
+                <small>El mensaje debe tener al menos 5 caracteres</small>
+            </div>
+        </div>
+        <!-- type -->
+        <div>
+            <label>Tipo</label>
+            <select formControlName="type">
+                <option value="log">Log</option>
+                <option value="warning">Warning</option>
+                <option value="error">Error</option>
+            </select>
+        </div>
+
+        <button type="submit" [disabled]="form.invalid">Registrar</button>
+    </form>
+</div>

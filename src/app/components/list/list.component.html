@@ -1,0 +1,24 @@
+<div class="list-container">
+    <h3>Mensajes Registrados</h3>
+
+    <!-- Filtro -->
+    <label>Filtrar por tipo:</label>
+    <select [(ngModel)]="filterType" (change)="updateLogs()">
+        <option value="all">Todos</option>
+        <option value="log">Log</option>
+        <option value="warn">Warning</option>
+        <option value="error">Error</option>
+    </select>
+
+    <!-- Lista de Mensajes -->
+    <ul *ngIf="logs.length > 0; else emptyList">
+        <li *ngFor="let log of logs">
+            <strong [ngClass]="log.type">{{ log.type.toUpperCase() }}:</strong> {{ log.message }}
+            <small>({{ log.timestamp | date:'short' }})</small>
+        </li>
+    </ul>
+
+    <ng-template #emptyList>
+        <p>No hay mensajes en esta categoría.</p>
+    </ng-template>
+</div>
