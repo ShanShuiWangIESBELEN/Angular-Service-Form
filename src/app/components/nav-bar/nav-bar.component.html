@@ -1,6 +1,10 @@
-<div>
-    <h1 class="text-center text-primary mb-5 mt-2">Registro de mensajes<span></span></h1>
-    <a class="btn btn-dark me-5" [routerLink]="['/']">Usuarios</a>
-    <a class="btn btn-primary me-5" [routerLink]="['/form']">Crear evento</a>
-    <a class="btn btn-info" [routerLink]="['/list']">Registro de eventos</a>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-3 shadow-sm">
+    <div class="container-fluid">
+        <h1 class="text-primary fw-bold mb-0">Registro de Mensajes <!-- <span *ngIf="username"> - {{username}}</span> --></h1>
+        <div class="btn-group">
+            <a class="btn btn-outline-dark" [routerLink]="['/']">Usuarios</a>
+            <a class="btn btn-outline-primary" [routerLink]="['/form']">Crear evento</a>
+            <a class="btn btn-outline-info" [routerLink]="['/list']">Registro de eventos</a>
+        </div>
+    </div>
+</nav>

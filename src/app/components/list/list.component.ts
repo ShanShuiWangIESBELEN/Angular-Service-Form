@@ -7,8 +7,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-list',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  templateUrl: './list.component.html'
 })
 export class ListComponent implements OnInit {
   logs: { message: string; type: 'log' | 'warn' | 'error'; timestamp?: Date }[] = [];

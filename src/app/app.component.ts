@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
-import { FormComponent } from './components/form/form.component';
-import { ListComponent } from './components/list/list.component';
-import { NavbarComponent } from "./components/nav-bar/nav-bar.component";
 import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [ RouterOutlet, FormComponent, ListComponent, NavbarComponent],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'serviceForm';
+  title = 'ServiceForm';
 }
