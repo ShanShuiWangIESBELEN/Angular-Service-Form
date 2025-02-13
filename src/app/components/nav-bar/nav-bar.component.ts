@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -6,6 +6,12 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   templateUrl: './nav-bar.component.html',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  username: string | null = null;
 
+  ngOnInit() {
+    this.username = localStorage.getItem('selectedEmpleado')
+      ? JSON.parse(localStorage.getItem('selectedEmpleado')!).nombre
+      : null;
+  }
 }

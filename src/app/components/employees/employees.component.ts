@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Empleado } from '../../models/Empleado';
 import { EmpleadoService } from '../../services/empleado.service';
+import { NgFor } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule, NgFor, NgIf]
 })
 export class EmployeesComponent implements OnInit {
   listEmpleados: Empleado[] = [];
@@ -28,8 +30,14 @@ export class EmployeesComponent implements OnInit {
   }
 
   async loadEmpleados() {
-    this.listEmpleados = await this.empleadoService.getAllEmpleados();
+    try {
+      this.listEmpleados = await this.empleadoService.getEmpleados();
+      console.log("Empleados cargados:", this.listEmpleados);
+    } catch (error) {
+      console.error("Error al cargar empleados:", error);
+    }
   }
+
 
   submit() {
     const selectedEmployee = this.employeeForm.get('username')?.value;

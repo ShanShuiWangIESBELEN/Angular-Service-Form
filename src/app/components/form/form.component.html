@@ -1,25 +1,53 @@
-<div class="form-container">
-    <h3>Registrar Mensaje</h3>
-    <form [formGroup]="form" (ngSubmit)="submitForm()">
-        <!-- Mensaje -->
-        <div>
-            <label for="message">Mensaje:</label>
-            <input type="text" formControlName="message" placeholder="Escribe un mensaje">
-            <div *ngIf="form.controls['message'].invalid && form.controls['message'].touched">
+<div class="form-container p-4 shadow-sm bg-white rounded">
+    <h3 class="text-primary text-center mb-3">Registrar Mensaje</h3>
 
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="needs-validation">
+
+        <!-- Selección de Empleado -->
+        <div class="mb-3">
+            <label for="empleado" class="form-label fw-bold">Empleado:</label>
+            <select class="form-select" formControlName="empleado" (change)="onEmpleadoChange()">
+                <option *ngFor="let emp of empleados" [value]="emp.id">{{ emp.nombre }}</option>
+            </select>
+        </div>
+
+        <!-- Cliente -->
+        <div class="mb-3">
+            <label for="cliente" class="form-label fw-bold">Cliente:</label>
+            <input type="text" id="cliente" class="form-control" formControlName="cliente"
+                placeholder="Nombre del Cliente">
+        </div>
+
+        <!-- Fecha del Evento -->
+        <div class="mb-3">
+            <label for="fechaEvento" class="form-label fw-bold">Fecha del Evento:</label>
+            <input type="date" class="form-control" id="fechaEvento" formControlName="fechaEvento">
+            <div *ngIf="form.controls['fechaEvento'].invalid && form.controls['fechaEvento'].touched">
+                <small class="text-danger fw-bold">Fecha inválida (debe estar dentro del último mes)</small>
+            </div>
+        </div>
+
+        <!-- Mensaje -->
+        <div class="mb-3">
+            <label for="message" class="form-label fw-bold">Mensaje:</label>
+            <input type="text" id="message" class="form-control" formControlName="message"
+                placeholder="Escribe un mensaje">
+            <div *ngIf="form.controls['message'].invalid && form.controls['message'].touched">
                 <small class="text-danger fw-bold">El mensaje debe tener al menos 5 caracteres</small>
             </div>
         </div>
-        <!-- type -->
-        <div>
-            <label>Tipo</label>
-            <select formControlName="type">
+
+        <!-- Tipo de mensaje -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">Tipo de mensaje:</label>
+            <select class="form-select" formControlName="type">
                 <option value="log">Log</option>
                 <option value="warn">Warning</option>
                 <option value="error">Error</option>
             </select>
         </div>
 
-        <button type="submit" [disabled]="form.invalid">Registrar</button>
+        <!-- Botón de envío -->
+        <button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid">Registrar</button>
     </form>
 </div>

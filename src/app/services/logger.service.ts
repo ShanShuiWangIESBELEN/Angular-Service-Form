@@ -1,51 +1,32 @@
 import { Injectable } from '@angular/core';
+import { Evento } from '../models/Evento';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggerService {
-  private logs: { message: string; type: 'log' | 'warn' | 'error' }[] = [];
-  countLog = 0;
-  countWarn = 0;
-  countError = 0;
+  private eventos: Evento[] = [];
 
-  constructor() { }
-
-  log(msg: string) {
-    console.log(msg);
-    this.logs.push({ message: msg, type: 'log' });
-    this.countLog++;
-    this.showCounts();
+  addEvento(evento: Evento): void {
+    this.eventos.push(evento);
+    console.log('Evento registrado:', evento);
   }
 
-  error(msg: string) {
-    console.error(msg);
-    this.logs.push({ message: msg, type: 'error' });
-    this.countError++;
-    this.showCounts();
+  getEventos(): Evento[] {
+    return this.eventos;
   }
 
-  warn(msg: string) {
-    console.warn(msg);
-    this.logs.push({ message: msg, type: 'warn' });
-    this.countWarn++;
-    this.showCounts();
-  }
-
-  showCounts() {
-    console.log(`Logs: ${this.countLog}, Warnings: ${this.countWarn}, Errors: ${this.countError}`);
-  }
-
-  getEvents() {
-    console.log("Eventos almacenados:", this.logs);
-    return this.logs;
-  }
-
-  getFilteredLogs(type: 'log' | 'warn' | 'error' | 'all') {
-    if (type === 'all') {
-      return this.getEvents();
+  getEventosFiltrados(tipo: 'log' | 'warn' | 'error' | 'all'): Evento[] {
+    if (tipo === 'all') {
+      return this.getEventos();
     }
-    return this.getEvents().filter(log => log.type === type);
+    return this.eventos.filter(evento => evento.type === tipo);
+  }
+  getFilteredLogs(tipo: 'log' | 'warn' | 'error' | 'all') {
+    if (tipo === 'all') {
+      return this.getEventos();
+    }
+    return this.getEventos().filter(evento => evento.type === tipo);
   }
 
 }
