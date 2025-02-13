@@ -1,0 +1,37 @@
+<div class="container mt-4">
+    <h2 class="text-center text-primary">Registro de Eventos</h2>
+
+    <div class="mb-3">
+        <label for="filter" class="form-label">Filtrar por tipo:</label>
+<select id="filter" class="form-select" (change)="filtrarEventos($event)">
+            <option value="all">Todos</option>
+            <option value="log">Log</option>
+            <option value="warn">Warning</option>
+            <option value="error">Error</option>
+        </select>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Empleado</th>
+                <th>Cliente</th>
+                <th>Fecha del Evento</th>
+                <th>Mensaje</th>
+                <th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let evento of eventos">
+                <td>{{ evento.empleado }}</td>
+                <td>{{ evento.cliente }}</td>
+                <td>{{ evento.fechaEvento | date }}</td>
+                <td>{{ evento.message }}</td>
+                <td
+                    [ngClass]="{'text-success': evento.type === 'log', 'text-warning': evento.type === 'warn', 'text-danger': evento.type === 'error'}">
+                    {{ evento.type }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
