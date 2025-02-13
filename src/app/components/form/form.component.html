@@ -7,7 +7,7 @@
             <input type="text" formControlName="message" placeholder="Escribe un mensaje">
             <div *ngIf="form.controls['message'].invalid && form.controls['message'].touched">
 
-                <small>El mensaje debe tener al menos 5 caracteres</small>
+                <small class="text-danger fw-bold">El mensaje debe tener al menos 5 caracteres</small>
             </div>
         </div>
         <!-- type -->
@@ -15,7 +15,7 @@
             <label>Tipo</label>
             <select formControlName="type">
                 <option value="log">Log</option>
-                <option value="warning">Warning</option>
+                <option value="warn">Warning</option>
                 <option value="error">Error</option>
             </select>
         </div>
