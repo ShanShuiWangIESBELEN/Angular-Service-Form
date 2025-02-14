@@ -9,4 +9,8 @@ import { NavbarComponent } from './components/nav-bar/nav-bar.component';
 })
 export class AppComponent {
   title = 'ServiceForm';
+
+  // npm install -g json-server
+  // json-server --watch db.json
+
 }
