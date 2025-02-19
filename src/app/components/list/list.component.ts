@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './list.component.html'
 })
 export class ListComponent implements OnInit {
-  logs: { message: string; type: 'log' | 'warn' | 'error'; timestamp?: Date }[] = [];
+  logs: { message: string; type: 'log' | 'warn' | 'error'; cliente?: string; timestamp?: Date }[] = [];
   filterType: 'log' | 'warn' | 'error' | 'all' = 'all';
 
   constructor(private loggerService: LoggerService) { }

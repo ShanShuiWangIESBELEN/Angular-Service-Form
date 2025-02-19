@@ -21,7 +21,7 @@
         <!-- Fecha del Evento -->
         <div class="mb-3">
             <label for="fechaEvento" class="form-label fw-bold">Fecha del Evento:</label>
-            <input type="text" class="form-control" bsDatepicker formControlName="fechaEvento">
+            <input type="date" class="form-control" id="fechaEvento" formControlName="fechaEvento">
             <div *ngIf="form.controls['fechaEvento'].invalid && form.controls['fechaEvento'].touched">
                 <small class="text-danger fw-bold">Fecha inválida (debe estar dentro del último mes)</small>
             </div>

@@ -31,7 +31,8 @@ export class EmployeesComponent implements OnInit {
 
   async loadEmpleados() {
     try {
-      this.listEmpleados = await this.empleadoService.getEmpleados();
+      this.listEmpleados = await this.empleadoService.getAllEmpleados();
+
       console.log("Empleados cargados:", this.listEmpleados);
     } catch (error) {
       console.error("Error al cargar empleados:", error);

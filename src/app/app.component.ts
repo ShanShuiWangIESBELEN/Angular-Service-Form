@@ -13,4 +13,6 @@ export class AppComponent {
   // npm install -g json-server
   // json-server --watch db.json
 
+  /* npx concurrently "ng serve" "json-server --watch db.json" */
+  /* npm install concurrently --save-dev */
 }

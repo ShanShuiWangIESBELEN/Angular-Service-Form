@@ -18,4 +18,6 @@ export class EmpleadoService {
         const data = await fetch(`${this.url}/${id}`);
         return (await data.json()) ?? {};
     }
+    
 }
+

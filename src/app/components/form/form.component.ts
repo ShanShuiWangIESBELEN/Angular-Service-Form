@@ -32,16 +32,19 @@ export class FormComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.empleados = this.empleadoService.getEmpleados();
-
-    const storedEmpleado = localStorage.getItem('selectedEmpleado');
-    if (storedEmpleado) {
-      this.selectedEmpleado = JSON.parse(storedEmpleado);
-      this.form.patchValue({ empleado: this.selectedEmpleado?.id });
-
+  async ngOnInit() {
+    try {
+      this.empleados = await this.empleadoService.getAllEmpleados();
+    } catch (error) {
+      console.error("Error fetching employees:", error);
     }
+    /* Metemos un localStorage aqui */
+    this.GuardarData();
+    this.form.valueChanges.subscribe(() => {
+      this.saveFormData();
+    });
   }
+
 
   onEmpleadoChange() {
     const empleadoId = this.form.value.empleado;
@@ -72,5 +75,16 @@ export class FormComponent implements OnInit {
     mesAnterior.setMonth(hoy.getMonth() - 1);
 
     return fechaSeleccionada >= mesAnterior && fechaSeleccionada <= hoy ? null : { fechaInvalida: true };
+  }
+
+  /* funcion para guardar Dato */
+  GuardarData() {
+    const savedForm = localStorage.getItem('formData');
+    if (savedForm) {
+      this.form.setValue(JSON.parse(savedForm));
+    }
+  }
+  saveFormData() {
+    localStorage.setItem('formData', JSON.stringify(this.form.value));
   }
 }
