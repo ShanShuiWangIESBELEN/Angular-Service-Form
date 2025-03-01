@@ -30,6 +30,11 @@ export class FormComponent implements OnInit {
       message: ['', [Validators.required, Validators.minLength(5)]],
       type: ['log', Validators.required]
     });
+/*     this.form.valueChanges.subscribe(() => localStorage.setItem("init", JSON.stringify(this.form.value)));
+
+    if (localStorage.getItem("init")) {
+      this.form.setValue(JSON.parse(localStorage.getItem("init") ?? "{}"))
+    } */
   }
 
   async ngOnInit() {
@@ -38,6 +43,7 @@ export class FormComponent implements OnInit {
     } catch (error) {
       console.error("Error fetching employees:", error);
     }
+    
     /* Metemos un localStorage aqui */
     this.GuardarData();
     this.form.valueChanges.subscribe(() => {
@@ -81,8 +87,19 @@ export class FormComponent implements OnInit {
   GuardarData() {
     const savedForm = localStorage.getItem('formData');
     if (savedForm) {
-      this.form.setValue(JSON.parse(savedForm));
+      const formData = JSON.parse(savedForm);
+      this.form.setValue(formData);
     }
+   /* 
+      Verificar que todos los controles del formulario tengan valores
+      Esto solo me guarda cuando todos los campos esta completado
+    if (formData.empleado && formData.cliente && formData.fechaEvento && formData.message && formData.type) {
+      this.form.setValue(formData);
+    } else {
+      console.warn('Datos de formulario incompletos en localStorage');
+    }
+  }
+    */
   }
   saveFormData() {
     localStorage.setItem('formData', JSON.stringify(this.form.value));
