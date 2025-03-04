@@ -13,12 +13,24 @@
     </div>
     <!-- Lista de Mensajes -->
     <ul class="list-group" *ngIf="logs.length > 0; else emptyList">
-        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let log of logs"
+        <li class="list-group-item d-flex flex-column" *ngFor="let log of logs"
             [ngClass]="{'text-success': log.type === 'log', 'text-warning': log.type === 'warn', 'text-danger': log.type === 'error'}">
-            <strong>{{ log.type.toUpperCase() }}:</strong>
-            
-            <span class="flex-grow-1 ms-2">{{ log.message }}</span>
-            <small class="text-muted">{{ log.timestamp | date:'short' }}</small>
+            <div class="d-flex justify-content-between align-items-center">
+                <strong>{{ log.type.toUpperCase() }}:</strong>
+                <small class="text-muted">{{ log.fechaRegistro | date:'short' }}</small>
+            </div>
+            <div class="mt-2">
+                <strong>Empleado:</strong> {{ log.empleado }}
+            </div>
+            <div>
+                <strong>Cliente:</strong> {{ log.cliente }}
+            </div>
+            <div>
+                <strong>Fecha del Evento:</strong> {{ log.fechaEvento | date:'short' }}
+            </div>
+            <div>
+                <strong>Mensaje:</strong> {{ log.message }}
+            </div>
         </li>
     </ul>
 

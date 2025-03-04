@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoggerService } from '../../services/logger.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Evento } from '../../models/Evento';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './list.component.html'
 })
 export class ListComponent implements OnInit {
-  logs: { message: string; type: 'log' | 'warn' | 'error'; cliente?: string; timestamp?: Date }[] = [];
+  logs: Evento[] = [];
   filterType: 'log' | 'warn' | 'error' | 'all' = 'all';
 
   constructor(private loggerService: LoggerService) { }
@@ -23,19 +24,3 @@ export class ListComponent implements OnInit {
     this.logs = this.loggerService.getFilteredLogs(this.filterType);
   }
 }
-
-
-/* @Component({
-  selector: 'app-list',
-  standalone: true,
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
-})
-export class ListComponent {
-  logs = [];
-
-  constructor(private loggerService: LoggerService) {
-  }
-  ngOnInit() {
-    this.logs = this.loggerService.getEvents();
-  } */
